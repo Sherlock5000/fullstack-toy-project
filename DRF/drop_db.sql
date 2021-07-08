@@ -1,2 +1,2 @@
-DROP DATABASE library_rest_app;
-DROP USER djangorestuser;
+DROP DATABASE fullstackapp;
+DROP USER fullstackuser;
