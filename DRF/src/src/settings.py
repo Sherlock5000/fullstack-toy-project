@@ -84,9 +84,9 @@ DATABASES = {
 
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'library_rest_app',
-        'USER': 'djangorestuser',
-        'PASSWORD': 'djangorestuser',
+        'NAME': 'fullstackapp',
+        'USER': 'fullstackuser',
+        'PASSWORD': 'fullstackuser',
         'HOST': 'localhost',
         'PORT': '5432'
 
