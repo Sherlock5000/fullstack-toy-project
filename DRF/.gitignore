@@ -1,0 +1,4 @@
+.vscode/*
+src/libraryrest/__pycache__/*
+src/libraryrest/migrations/__pycache__/*
+src/src/__pycache__/*
