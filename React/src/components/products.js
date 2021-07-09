@@ -1,8 +1,10 @@
 import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Navbar from "./navbar/navbar";
+// import { useCookies } from "react-cookie";
 
-const Products = ({ user }) => {
+const Products = ({ user, products = [] }) => {
+  // const [token] = useCookies(["mytoken"]);
   return (
     <>
       <Navbar user={user} />
@@ -18,22 +20,15 @@ const Products = ({ user }) => {
                 <th>Category</th>
                 <th>Price</th>
               </tr>
-
-              <tr>
-                <td>Book1</td>
-                <td>Fiction</td>
-                <td>10</td>
-              </tr>
-              <tr>
-                <td>Book2</td>
-                <td>Thriller</td>
-                <td>25</td>
-              </tr>
-              <tr>
-                <td>Book3</td>
-                <td>Biography</td>
-                <td>15</td>
-              </tr>
+              {products.map((product) => {
+                return (
+                  <tr key={product.id}>
+                    <td>{product.name}</td>
+                    <td>{product.category}</td>
+                    <td>{product.price}</td>
+                  </tr>
+                );
+              })}
             </table>
           </div>
         </div>

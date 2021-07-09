@@ -1,9 +1,28 @@
 import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Navbar from "./navbar/navbar";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
+import APIService from "./APIService";
+import { useCookies } from "react-cookie";
 
-const Dashboard = ({ user, bookName, statusName }) => {
+const Dashboard = ({
+  user,
+  bookName,
+  statusName,
+  users,
+  orders,
+  editBtn,
+  deleteBtn,
+}) => {
+  const history = useHistory();
+
+  // const editBtn = (order) => {
+  // console.log(id);
+  // let path = `/edit_order/${id}`;
+  // history.push(path);
+  // props.editBtn(order);
+  // };
+  const [token] = useCookies(["mytoken"]);
   return (
     <>
       <Navbar user={user} />
@@ -21,14 +40,19 @@ const Dashboard = ({ user, bookName, statusName }) => {
                 <th>Phone</th>
               </tr>
 
-              <tr>
-                <td>
-                  <Link className="btn btn-sm btn-info" to="/customer">
-                    View
-                  </Link>
-                </td>
-                <td>{user}</td>
-              </tr>
+              {users.map((userName) => {
+                return (
+                  <tr key={userName.id}>
+                    <td>
+                      <Link className="btn btn-sm btn-info" to="/customer">
+                        View
+                      </Link>
+                    </td>
+                    <td>{userName.name}</td>
+                    <td>{userName.phone}</td>
+                  </tr>
+                );
+              })}
             </table>
           </div>
         </div>
@@ -39,6 +63,7 @@ const Dashboard = ({ user, bookName, statusName }) => {
           <div className="card card-body">
             <table className="table table-sm">
               <tr>
+                <th>OrderID</th>
                 <th>Customer</th>
                 <th>Product</th>
                 <th>Date</th>
@@ -46,24 +71,42 @@ const Dashboard = ({ user, bookName, statusName }) => {
                 <th>Update</th>
                 <th>Remove</th>
               </tr>
+              {orders.map((order) => {
+                return (
+                  <tr>
+                    <td>{order.id}</td>
+                    <td>{order.customer}</td>
+                    <td>{order.product}</td>
+                    <td>{order.date_created}</td>
+                    <td>{order.status}</td>
+                    <td>
+                      <Link
+                        className="btn btn-sm btn-info"
+                        // to="/edit_order/"
+                        onClick={() => {
+                          editBtn(order);
+                        }}
+                      >
+                        Update
+                      </Link>
+                    </td>
 
-              <tr>
-                <td>{user}</td>
-                <td>{bookName}</td>
-                <td></td>
-                <td>{statusName}</td>
-                <td>
-                  <Link className="btn btn-sm btn-info" to="/place_order">
-                    Update
-                  </Link>
-                </td>
-
-                <td>
-                  <Link className="btn btn-sm btn-danger" to="/delete">
-                    Delete
-                  </Link>
-                </td>
-              </tr>
+                    <td>
+                      <Link
+                        onClick={() => {
+                          APIService.DeleteOrder(order.id, token["mytoken"])
+                            .then(() => deleteBtn(order))
+                            .catch((error) => console.log(error));
+                        }}
+                        className="btn btn-sm btn-danger"
+                        // to="/delete"
+                      >
+                        Delete
+                      </Link>
+                    </td>
+                  </tr>
+                );
+              })}
             </table>
           </div>
         </div>

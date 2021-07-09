@@ -2,8 +2,9 @@ import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Navbar from "./navbar/navbar";
 import { Link } from "react-router-dom";
+import Products from "./products";
 
-const Customer = ({ user, bookName, statusName }) => {
+const Customer = ({ user, bookName, statusName, users, orders }) => {
   return (
     <>
       <Navbar user={user} />
@@ -30,7 +31,7 @@ const Customer = ({ user, bookName, statusName }) => {
 
         <div className="col-md">
           <div className="card card-body">
-            <h5>Total Orders</h5>
+            <h5>Total Orders: {orders.length}</h5>
             <hr />
             <h1 style={{ textAlign: "center", padding: "10px" }}></h1>
           </div>
@@ -52,24 +53,27 @@ const Customer = ({ user, bookName, statusName }) => {
                 <th>Update</th>
                 <th>Remove</th>
               </tr>
+              {orders.map((order) => {
+                return (
+                  <tr key={order.id}>
+                    <td>{order.product}</td>
+                    <td>{order.note}</td>
+                    <td>{order.date_created}</td>
+                    <td>{order.status}</td>
+                    <td>
+                      <Link className="btn btn-sm btn-info" to="/place_order">
+                        Update
+                      </Link>
+                    </td>
 
-              <tr>
-                <td>{bookName}</td>
-                <td>{}</td>
-                <td>{}</td>
-                <td>{statusName}</td>
-                <td>
-                  <Link className="btn btn-sm btn-info" to="/place_order">
-                    Update
-                  </Link>
-                </td>
-
-                <td>
-                  <Link className="btn btn-sm btn-danger" to="/delete">
-                    Delete
-                  </Link>
-                </td>
-              </tr>
+                    <td>
+                      <Link className="btn btn-sm btn-danger" to="/delete">
+                        Delete
+                      </Link>
+                    </td>
+                  </tr>
+                );
+              })}
             </table>
           </div>
         </div>
