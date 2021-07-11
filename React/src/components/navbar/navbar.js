@@ -30,14 +30,14 @@ const Navbar = ({ user }) => {
               </Link>
             </li>
             <li className="nav-item">
-              <Link className="nav-link" to="/products">
+              {/* <Link className="nav-link" to="/products">
                 Products
-              </Link>
+              </Link> */}
             </li>
           </ul>
         </div>
 
-        <span className="hello-msg">Hello, {user}</span>
+        {/* <span className="hello-msg">Hello</span> */}
         <span>
           <Link className="hello-msg" to="/login">
             Logout

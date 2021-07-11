@@ -44,9 +44,9 @@ const Dashboard = ({
                 return (
                   <tr key={userName.id}>
                     <td>
-                      <Link className="btn btn-sm btn-info" to="/customer">
+                      {/* <Link className="btn btn-sm btn-info" to="/customer">
                         View
-                      </Link>
+                      </Link> */}
                     </td>
                     <td>{userName.name}</td>
                     <td>{userName.phone}</td>
