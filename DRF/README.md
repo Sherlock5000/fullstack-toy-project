@@ -1,4 +1,4 @@
-# **DRF Toy Project**
+# **Fullstack Toy Project**
 
 ## **Objective**
 
