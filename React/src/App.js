@@ -86,7 +86,7 @@ function App() {
   };
 
   const orderForm = () => {
-    setEditOrder({ product: "", status: "" });
+    setEditOrder({ product: "", status: "", customer: "" });
   };
 
   const insertedInformation = (order) => {

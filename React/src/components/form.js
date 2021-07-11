@@ -5,6 +5,8 @@ import { useCookies } from "react-cookie";
 function Form(props) {
   const [product, setProduct] = useState("");
   const [status, setStatus] = useState("");
+  const [customer, setCustomer] = useState("");
+
   const [token] = useCookies(["mytoken"]);
   useEffect(() => {
     setProduct(props.order.product);
@@ -20,9 +22,10 @@ function Form(props) {
   };
 
   const insertOrder = () => {
-    APIService.InsertOrder({ product, status }, token["mytoken"]).then((resp) =>
-      props.insertedInformation(resp)
-    );
+    APIService.InsertOrder(
+      { product, status, customer },
+      token["mytoken"]
+    ).then((resp) => props.insertedInformation(resp));
   };
 
   return (
@@ -59,16 +62,16 @@ function Form(props) {
             </button>
           ) : (
             <>
-              <label htmlFor="product" className="form-label">
+              <label htmlFor="customer" className="form-label">
                 Customer
               </label>
               <input
                 type="text"
                 className="form-control"
-                id="product"
+                id="customer"
                 placeholder="Please enter Customer"
-                value={product}
-                onChange={(e) => setProduct(e.target.value)}
+                value={customer}
+                onChange={(e) => setCustomer(e.target.value)}
               ></input>
               <button onClick={insertOrder} className="btn btn-success">
                 Insert Order

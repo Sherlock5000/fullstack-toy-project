@@ -58,7 +58,7 @@ const Dashboard = ({
         </div>
 
         <div className="col-md-7">
-          <h5>LAST 5 TRANSACTIONS</h5>
+          <h5>Orders</h5>
           <hr />
           <div className="card card-body">
             <table className="table table-sm">
