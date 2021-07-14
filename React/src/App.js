@@ -49,7 +49,7 @@ function App() {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
-        Authorization: "Token a3f0dd7e999455c01df1a12449c464195f260b0a",
+        Authorization: `Token ${token["mytoken"]}`,
       },
     })
       .then((resp) => resp.json())
@@ -62,7 +62,7 @@ function App() {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
-        Authorization: "Token a3f0dd7e999455c01df1a12449c464195f260b0a",
+        Authorization: `Token ${token["mytoken"]}`,
       },
     })
       .then((resp) => resp.json())
